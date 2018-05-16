@@ -5,11 +5,21 @@ import React from 'react'
 import {Home} from "./client/component/Home";
 
 
+app.use(express.static(__dirname,'public'))
+
 app.get('/',(req,res)=>{
     const content = ReactDOM.renderToString(<Home />)
-
+    const html = `
+        <html>
+        <body>
+            <div id="root">${content}</div>
+        </body>
+        </html>        
+    `
     res.send(content)
 })
+
+
 
 
 
